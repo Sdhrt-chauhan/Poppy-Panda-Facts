@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panda Facts</title>
+    <style>
+        body {
+            background-image: url('panda1.jpg'); /* Background image */
+            background-size: cover;
+            background-position: center;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            color: #fff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+            background-color: rgba(0, 0, 0, 0.6); /* Blackish translucent overlay */
+            background-blend-mode: darken;
+        }
+
+        .container {
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        h1 {
+            color: #FFD700;
+        }
+
+        .fact-display {
+            margin: 20px;
+            padding: 20px;
+            border: 2px solid #FFD700;
+            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            font-size: 1.2em;
+            color: #333;
+            transition: all 0.3s ease;
+        }
+
+        .fact-display:hover {
+            transform: scale(1.05);
+        }
+
+        .panda-button {
+            position: relative;
+            background-color: transparent;
+            width: 100px;
+            height: 100px;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .button-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            animation: none;
+        }
+
+        .button-icon.animate {
+            animation: shake-jump 0.8s ease-in-out;
+        }
+
+        @keyframes shake-jump {
+            0%, 100% {
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+            20% {
+                transform: translate(-50%, -60%) rotate(-10deg);
+            }
+            40% {
+                transform: translate(-50%, -50%) rotate(10deg);
+            }
+            60% {
+                transform: translate(-50%, -65%) rotate(-5deg);
+            }
+            80% {
+                transform: translate(-50%, -50%) rotate(5deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Panda Facts</h1>
+        <div id="factDisplay" class="fact-display">Click the panda for a fact!</div>
+        <button id="pandaButton" class="panda-button">
+            <img src="removed background img.png" alt="Icon" class="button-icon"> <!-- Icon inside button -->
+        </button>
+    </div>
+    <script>
+        const pandaFacts = [
+            {
+                "fact": "Panda's Fashion Statement",
+                "description": "Pandas have a unique way of dressing for the occasion. Their black and white fur is not just for looks; it helps them camouflage in the shadows of bamboo forests and snowy landscapes."
+            },
+            {
+                "fact": "Panda's Snack Attack",
+                "description": "While pandas are known for their love of bamboo, they can eat up to 40 different types of plants."
+            },
+            {
+                "fact": "Panda's Sleepy Time",
+                "description": "Pandas can sleep up to 20 hours a day! They are the ultimate nappers."
+            },
+            {
+                "fact": "Panda's Social Skills",
+                "description": "Despite their cuddly appearance, pandas are quite solitary creatures."
+            },
+            {
+                "fact": "Panda's Unique Voice",
+                "description": "Pandas have a wide range of vocalizations, including honks, growls, and even bleats."
+            },
+            {
+                "fact": "Panda's Clumsy Charm",
+                "description": "Baby pandas are born blind and weigh about as much as a cup of tea."
+            },
+            {
+                "fact": "Panda's Love Life",
+                "description": "Female pandas are only in heat for about 2-3 days a year."
+            },
+            {
+                "fact": "Panda's Bamboo Buffet",
+                "description": "A panda can consume up to 28 pounds of bamboo in a single day."
+            },
+            {
+                "fact": "Panda's Pseudo-Thumb",
+                "description": "Pandas have a 'pseudo-thumb,' which is actually an extended wrist bone."
+            },
+            {
+                "fact": "Panda's Secret Identity",
+                "description": "Despite being classified as bears, pandas are more closely related to raccoons than to other bears."
+            }
+        ];
+
+        const pandaButton = document.getElementById('pandaButton');
+        const buttonIcon = document.querySelector('.button-icon');
+
+        pandaButton.addEventListener('click', function() {
+            // Random fact generation
+            const randomIndex = Math.floor(Math.random() * pandaFacts.length);
+            const fact = pandaFacts[randomIndex];
+            document.getElementById('factDisplay').innerText = `${fact.fact}: ${fact.description}`;
+
+            // Add shake-jump animation to image
+            buttonIcon.classList.add('animate');
+            setTimeout(() => {
+                buttonIcon.classList.remove('animate');
+            }, 800); // Animation duration
+        });
+    </script>
+</body>
+</html>
